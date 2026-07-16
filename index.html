@@ -41,7 +41,7 @@
   }
   .brand-name{
     font-family:'Ultra', serif;
-    font-size:clamp(55px,17vw,95px);
+    font-size:clamp(48px,17vw,65px);
     line-height:.9;
     margin:0;
     letter-spacing:1px;
@@ -58,3 +58,514 @@
     background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
     -webkit-background-clip:text;
     background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+    margin:-2px 0 0;
+    letter-spacing:3px;
+    filter:drop-shadow(0 2px 0 rgba(0,0,0,.4));
+  }
+  .brand p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:var(--muted);
+    letter-spacing:.5px;
+  }
+  .card{
+    width:100%;
+    max-width:480px;
+    background:var(--brasero-black-soft);
+    border:1px solid #2a2119;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 22px 24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute; inset:0 0 auto 0; height:4px;
+    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
+  }
+  /* progress: 5 espetinhos = 5 etapas */
+  .skewers{
+    display:flex; justify-content:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .skewers span{
+    font-size:22px;
+    filter:grayscale(1) opacity(.35);
+    transition:filter .3s;
+  }
+  .skewers span.done{ filter:none; opacity:1; }
+  .step-title{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:20px;
+    margin:0 0 4px;
+    color:var(--brasero-yellow);
+  }
+  .step-sub{
+    font-size:13.5px;
+    color:var(--muted);
+    margin:0 0 18px;
+    line-height:1.5;
+  }
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--brasero-cream);
+    margin:14px 0 6px;
+  }
+  label.first{ margin-top:0; }
+  input[type=text], input[type=tel], input[type=date], input[type=number], select, textarea{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    background:#0c0a09;
+    border:1.5px solid #382c22;
+    border-radius:10px;
+    padding:11px 12px;
+    color:var(--brasero-cream);
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    outline:none;
+    transition:border-color .2s;
+  }
+  input:focus, select:focus, textarea:focus{ border-color:var(--brasero-orange); }
+  textarea{ resize:vertical; min-height:70px; }
+  .hint{ font-size:12px; color:var(--muted); margin-top:4px; }
+  .grid2{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; }
+  .grid2 > div{ min-width:0; }
+
+  .pacote-list{ display:flex; flex-direction:column; gap:10px; }
+  .pacote-card{
+    border:1.5px solid #382c22;
+    border-radius:12px;
+    padding:14px;
+    cursor:pointer;
+    transition:border-color .2s, background .2s;
+    position:relative;
+  }
+  .pacote-card.selected{
+    border-color:var(--brasero-orange);
+    background:rgba(255,122,26,.08);
+  }
+  .pacote-card.sugerido::after{
+    content:"Sugerido pro seu nº de convidados";
+    position:absolute; top:-10px; right:12px;
+    background:var(--brasero-red);
+    color:#fff; font-size:10.5px; font-weight:700;
+    padding:3px 8px; border-radius:20px;
+  }
+  .pacote-card h3{
+    margin:0 0 3px; font-family:'Poppins',sans-serif; font-size:16px;
+    color:var(--brasero-cream);
+  }
+  .pacote-card p{ margin:0; font-size:12.5px; color:var(--muted); }
+
+  .chip-group{ margin-bottom:16px; }
+  .chip-group h4{
+    font-size:12.5px; text-transform:uppercase; letter-spacing:.6px;
+    color:var(--brasero-orange); margin:0 0 8px; font-weight:700;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    border:1.5px solid #382c22;
+    border-radius:20px;
+    padding:8px 14px;
+    font-size:13.5px;
+    cursor:pointer;
+    user-select:none;
+    transition:all .15s;
+    color:var(--brasero-cream);
+  }
+  .chip.on{
+    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange));
+    border-color:transparent;
+    font-weight:600;
+  }
+
+  .summary-block{
+    background:#0c0a09;
+    border:1px solid #2a2119;
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:12px;
+    font-size:13.5px;
+    line-height:1.7;
+  }
+  .summary-block b{ color:var(--brasero-yellow); }
+  .summary-block .muted-small{ color:var(--muted); font-size:12px; }
+
+  .nav-row{
+    display:flex; justify-content:space-between; gap:10px; margin-top:22px;
+  }
+  button{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    border:none;
+    border-radius:10px;
+    padding:13px 18px;
+    cursor:pointer;
+    transition:transform .1s, opacity .2s;
+  }
+  button:active{ transform:scale(.97); }
+  .btn-primary{
+    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange));
+    color:#fff;
+    flex:1;
+  }
+  .btn-secondary{
+    background:transparent;
+    color:var(--muted);
+    border:1.5px solid #382c22;
+  }
+  .btn-whatsapp{
+    background:#25D366; color:#04170a; width:100%;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    font-size:16px; padding:15px;
+  }
+  .error-msg{
+    color:#ff8a80; font-size:12.5px; margin-top:8px; display:none;
+  }
+  .footer-note{
+    text-align:center; color:var(--muted); font-size:12px;
+    margin-top:18px; max-width:440px; line-height:1.6;
+  }
+  .footer-note a{ color:var(--brasero-orange); text-decoration:none; }
+  @media (max-width:380px){ .grid2{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="brand">
+  <p class="brand-name">BRASERO</p>
+  <p class="brand-96">96</p>
+  <p>Monte a base do seu or&ccedil;amento em 5 passos &#128293;</p>
+</div>
+
+<div class="card">
+  <div class="skewers" id="skewers">
+    <span data-i="1">&#128293;</span><span data-i="2">&#128293;</span><span data-i="3">&#128293;</span><span data-i="4">&#128293;</span><span data-i="5">&#128293;</span>
+  </div>
+
+  <!-- ETAPA 1 -->
+  <div class="step" id="step-1">
+    <p class="step-title">Sobre o seu evento</p>
+    <p class="step-sub">Pra começar, conta pra gente um pouco sobre a ocasião.</p>
+
+    <label class="first">Seu nome</label>
+    <input type="text" id="f-nome" placeholder="Como podemos te chamar?">
+
+    <label>WhatsApp para contato</label>
+    <input type="tel" id="f-telefone" placeholder="(85) 9 9999-9999">
+
+    <label>Tipo de evento</label>
+    <select id="f-tipo">
+      <option value="">Selecione...</option>
+      <option>Aniversário</option>
+      <option>Confraternização</option>
+      <option>Evento corporativo</option>
+      <option>Chá revelação / de fraldas / de cozinha</option>
+      <option>Noivado</option>
+      <option>Casamento</option>
+      <option>Outro</option>
+    </select>
+
+    <div class="grid2">
+      <div>
+        <label>Data prevista</label>
+        <input type="date" id="f-data">
+      </div>
+      <div>
+        <label>Nº de convidados</label>
+        <input type="number" id="f-convidados" min="1" placeholder="Ex: 25">
+      </div>
+    </div>
+
+    <label>Cidade / bairro do evento</label>
+    <input type="text" id="f-local" placeholder="Ex: Fortaleza - Aldeota">
+    <p class="hint">Eventos fora de Fortaleza ou Região Metropolitana têm taxa de deslocamento a combinar.</p>
+
+    <p class="error-msg" id="err-1">Preenche seu nome e o nº de convidados pra continuar 🙂</p>
+  </div>
+
+  <!-- ETAPA 2 -->
+  <div class="step" id="step-2" style="display:none;">
+    <p class="step-title">Escolha um pacote</p>
+    <p class="step-sub">Isso é só um ponto de partida — os valores finais a gente ajusta com você na conversa.</p>
+    <div class="pacote-list" id="pacote-list"></div>
+    <p class="error-msg" id="err-2">Escolhe um pacote pra continuar.</p>
+  </div>
+
+  <!-- ETAPA 3 -->
+  <div class="step" id="step-3" style="display:none;">
+    <p class="step-title">Sabores desejados</p>
+    <p class="step-sub">Marca os que você quer incluir. Pode escolher mais de um — a gente monta o mix ideal pra quantidade do seu evento.</p>
+    <div id="sabores-container"></div>
+    <p class="error-msg" id="err-3">Marca pelo menos um sabor.</p>
+  </div>
+
+  <!-- ETAPA 4 -->
+  <div class="step" id="step-4" style="display:none;">
+    <p class="step-title">Quer incluir mais alguma coisa?</p>
+    <p class="step-sub">Itens opcionais — se não quiser nenhum, pode seguir direto.</p>
+    <div class="chip-group">
+      <div class="chips" id="extras-container"></div>
+    </div>
+    <label class="first">Observações</label>
+    <textarea id="f-obs" placeholder="Alguma informação extra? Restrição alimentar, horário de início, ponto de referência..."></textarea>
+  </div>
+
+  <!-- ETAPA 5 -->
+  <div class="step" id="step-5" style="display:none;">
+    <p class="step-title">Revisão do seu pedido</p>
+    <p class="step-sub">Confere se está tudo certo. Ao enviar, o WhatsApp abre já com essa mensagem pronta pra você mandar pra gente.</p>
+    <div id="resumo"></div>
+    <button class="btn-whatsapp" id="btn-enviar">&#128242; Enviar pelo WhatsApp</button>
+  </div>
+
+  <div class="nav-row" id="nav-row">
+    <button class="btn-secondary" id="btn-voltar" style="visibility:hidden;">Voltar</button>
+    <button class="btn-primary" id="btn-avancar">Continuar</button>
+  </div>
+</div>
+
+<p class="footer-note">
+  Seus dados são só pra gente organizar seu atendimento — nada é publicado.
+  Dúvidas? <a href="https://instagram.com/brasero.96" target="_blank">@brasero.96</a>
+</p>
+
+<script>
+/* =========================================================================
+   CONFIGURAÇÃO — edite aqui sem precisar tocar no resto do código
+   ========================================================================= */
+const CONFIG = {
+  // Número do WhatsApp que vai receber a mensagem (com DDI 55 + DDD, só números)
+  WHATSAPP_NUMBER: "5585992180121",
+
+  // Cole aqui a URL do seu Web App do Apps Script (veja o arquivo LEIA-ME.md).
+  // Deixe em branco ("") se ainda não configurou — o site funciona normalmente,
+  // só não vai registrar o histórico na planilha.
+  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyKVePTx5pmottEzVJJmQBXaiLSLKDMfhFZ8HAJIdK9OObkmiY_hF3i7vKWcZ5a73jNwA/exec",
+
+  PACOTES: [
+    { id:"start",   nome:"Pacote Start",       ate:20, espetos:100, desc:"Ideal para eventos menores, até 20 pessoas." },
+    { id:"chama",   nome:"Pacote Chama",       ate:30, espetos:150, desc:"Para eventos médios, até 30 pessoas." },
+    { id:"brasero", nome:"Pacote Brasero 96",  ate:40, espetos:200, desc:"Nosso pacote completo, até 40 pessoas." },
+    { id:"personalizado", nome:"Personalizado", ate:null, espetos:null, desc:"Mais de 40 pessoas ou uma necessidade fora do padrão? Vamos montar sob medida." }
+  ],
+
+  // Sabores agrupados por categoria dentro de cada grupo (clássicos / premium)
+  SABORES: {
+    "Sabores Clássicos": {
+      "Carne Bovina": ["Lombinho Bovino","Lombinho Bovino e Bacon intercalados","Lombinho Bovino e Calabresa intercalados","Coração Bovino","Cupim Bovino","Carne do Sol (Lombinho Bovino)","Alcatra Bovina"],
+      "Frango": ["Asa de Frango","Filé de Peito de Frango","Coxinha da Asa (Drumette)","Coração de Frango","Filé de Frango e Bacon intercalados","Filé de Frango e Bacon medalhão"],
+      "Carne Suína": ["Sobrepaleta Suína","Linguiça Mista para Churrasco"]
+    },
+    "Sabores Premium": {
+      "Carne Bovina": ["Picanha Bovina","Maminha da Alcatra Bovina","Cupim Bovino Tipo A Especial","Lombinho Bovino e Bacon medalhão","Alcatra Bovina Premium"]
+    }
+  },
+
+  // Serviços extras opcionais — são só sugestões, ajuste como quiser
+  EXTRAS: [
+    "Hora extra de atendimento",
+    "Bebida gelada no local",
+    "Petiscos de entrada",
+    "Sobremesa",
+    "Mesa decorada",
+    "Som ambiente"
+  ]
+};
+
+/* ========================================================================= */
+
+const state = {
+  step: 1,
+  pacote: null,
+  sabores: new Set(),
+  extras: new Set()
+};
+
+const $ = (id) => document.getElementById(id);
+
+function renderPacotes(){
+  const list = $("pacote-list");
+  list.innerHTML = "";
+  const convidados = parseInt($("f-convidados").value) || 0;
+  CONFIG.PACOTES.forEach(p => {
+    const sugerido = p.ate && convidados > 0 && convidados <= p.ate &&
+      !CONFIG.PACOTES.some(o => o.ate && o.ate < p.ate && convidados <= o.ate);
+    const div = document.createElement("div");
+    div.className = "pacote-card" + (state.pacote===p.id ? " selected":"") + (sugerido ? " sugerido":"");
+    div.innerHTML = `<h3>${p.nome}</h3><p>${p.desc}</p>`;
+    div.onclick = () => { state.pacote = p.id; renderPacotes(); };
+    list.appendChild(div);
+  });
+}
+
+function renderSabores(){
+  const container = $("sabores-container");
+  container.innerHTML = "";
+  Object.entries(CONFIG.SABORES).forEach(([grupo, categorias]) => {
+    const groupDiv = document.createElement("div");
+    groupDiv.className = "chip-group";
+    groupDiv.innerHTML = `<h4>${grupo}</h4>`;
+    Object.entries(categorias).forEach(([categoria, itens]) => {
+      const catLabel = document.createElement("p");
+      catLabel.className = "hint";
+      catLabel.style.margin = "0 0 6px";
+      catLabel.textContent = categoria;
+      groupDiv.appendChild(catLabel);
+      const chipsDiv = document.createElement("div");
+      chipsDiv.className = "chips";
+      chipsDiv.style.marginBottom = "10px";
+      itens.forEach(sabor => {
+        const chip = document.createElement("div");
+        chip.className = "chip" + (state.sabores.has(sabor) ? " on":"");
+        chip.textContent = sabor;
+        chip.onclick = () => {
+          state.sabores.has(sabor) ? state.sabores.delete(sabor) : state.sabores.add(sabor);
+          chip.classList.toggle("on");
+        };
+        chipsDiv.appendChild(chip);
+      });
+      groupDiv.appendChild(chipsDiv);
+    });
+    container.appendChild(groupDiv);
+  });
+}
+
+function renderExtras(){
+  const container = $("extras-container");
+  container.innerHTML = "";
+  CONFIG.EXTRAS.forEach(extra => {
+    const chip = document.createElement("div");
+    chip.className = "chip" + (state.extras.has(extra) ? " on":"");
+    chip.textContent = extra;
+    chip.onclick = () => {
+      state.extras.has(extra) ? state.extras.delete(extra) : state.extras.add(extra);
+      chip.classList.toggle("on");
+    };
+    container.appendChild(chip);
+  });
+}
+
+function renderResumo(){
+  const pacoteNome = CONFIG.PACOTES.find(p => p.id === state.pacote)?.nome || "-";
+  const sabores = [...state.sabores];
+  const extras = [...state.extras];
+  $("resumo").innerHTML = `
+    <div class="summary-block">
+      <div><b>${$("f-nome").value || "-"}</b> <span class="muted-small">${$("f-telefone").value || ""}</span></div>
+      <div>${$("f-tipo").value || "Tipo não informado"} · ${$("f-convidados").value || "?"} pessoas</div>
+      <div class="muted-small">${$("f-data").value || "Data a combinar"} · ${$("f-local").value || "Local a combinar"}</div>
+    </div>
+    <div class="summary-block">
+      <div><b>Pacote:</b> ${pacoteNome}</div>
+      <div><b>Sabores:</b> ${sabores.length ? sabores.join(", ") : "nenhum selecionado"}</div>
+      ${extras.length ? `<div><b>Extras:</b> ${extras.join(", ")}</div>` : ""}
+      ${$("f-obs").value ? `<div><b>Observações:</b> ${$("f-obs").value}</div>` : ""}
+    </div>
+  `;
+}
+
+function buildMensagem(){
+  const pacoteNome = CONFIG.PACOTES.find(p => p.id === state.pacote)?.nome || "-";
+  const linhas = [
+    "Ol\u00e1! Gostaria de solicitar um or\u00e7amento para meu evento com o Brasero 96 \u{1F525}",
+    "",
+    "*Dados do evento*",
+    `Nome: ${$("f-nome").value || "-"}`,
+    `Tipo de evento: ${$("f-tipo").value || "-"}`,
+    `Data prevista: ${$("f-data").value || "a combinar"}`,
+    `Local: ${$("f-local").value || "a combinar"}`,
+    `Nº de convidados: ${$("f-convidados").value || "-"}`,
+    "",
+    `*Pacote de interesse:* ${pacoteNome}`,
+    "",
+    `*Sabores desejados:* ${[...state.sabores].join(", ") || "a combinar"}`,
+  ];
+  if (state.extras.size) linhas.push("", `*Serviços adicionais:* ${[...state.extras].join(", ")}`);
+  if ($("f-obs").value) linhas.push("", `*Observações:* ${$("f-obs").value}`);
+  linhas.push("", "Aguardo o retorno com os valores. Obrigado!");
+  return linhas.join("\n");
+}
+
+function logNoSheets(){
+  if (!CONFIG.SHEETS_WEBAPP_URL) return; // registro desativado até configurar a URL
+  const params = new URLSearchParams({
+    nome: $("f-nome").value,
+    telefone: $("f-telefone").value,
+    tipoEvento: $("f-tipo").value,
+    data: $("f-data").value,
+    local: $("f-local").value,
+    convidados: $("f-convidados").value,
+    pacote: CONFIG.PACOTES.find(p => p.id === state.pacote)?.nome || "",
+    sabores: [...state.sabores].join(" | "),
+    extras: [...state.extras].join(" | "),
+    observacoes: $("f-obs").value,
+    callback: "jsonpCallback"
+  });
+  window.jsonpCallback = function(){ /* apenas confirma recebimento, sem ação visual */ };
+  const script = document.createElement("script");
+  script.src = CONFIG.SHEETS_WEBAPP_URL + "?" + params.toString();
+  document.body.appendChild(script);
+  setTimeout(() => script.remove(), 8000);
+}
+
+function validaEtapa(step){
+  if (step === 1){
+    const ok = $("f-nome").value.trim() && $("f-convidados").value;
+    $("err-1").style.display = ok ? "none" : "block";
+    return ok;
+  }
+  if (step === 2){
+    const ok = !!state.pacote;
+    $("err-2").style.display = ok ? "none" : "block";
+    return ok;
+  }
+  if (step === 3){
+    const ok = state.sabores.size > 0;
+    $("err-3").style.display = ok ? "none" : "block";
+    return ok;
+  }
+  return true;
+}
+
+function goTo(step){
+  document.querySelectorAll(".step").forEach(el => el.style.display = "none");
+  $("step-" + step).style.display = "block";
+  state.step = step;
+  document.querySelectorAll("#skewers span").forEach(s => {
+    s.classList.toggle("done", parseInt(s.dataset.i) <= step);
+  });
+  $("btn-voltar").style.visibility = step === 1 ? "hidden" : "visible";
+  $("nav-row").style.display = step === 5 ? "none" : "flex";
+  if (step === 2) renderPacotes();
+  if (step === 3) renderSabores();
+  if (step === 4) renderExtras();
+  if (step === 5) renderResumo();
+}
+
+$("f-convidados").addEventListener("input", () => { if (state.step===2) renderPacotes(); });
+
+$("btn-avancar").onclick = () => {
+  if (!validaEtapa(state.step)) return;
+  goTo(Math.min(state.step + 1, 5));
+};
+$("btn-voltar").onclick = () => goTo(Math.max(state.step - 1, 1));
+
+$("btn-enviar").onclick = () => {
+  logNoSheets();
+  const texto = encodeURIComponent(buildMensagem());
+  window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${texto}`, "_blank");
+};
+
+goTo(1);
+</script>
+</body>
+</html>
