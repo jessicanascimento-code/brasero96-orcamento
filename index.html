@@ -41,20 +41,26 @@
   }
   .brand-name{
     font-family:'Ultra', serif;
-    font-size:clamp(30px,8vw,42px);
+    font-size:65px;
     line-height:.9;
     margin:0;
     letter-spacing:1px;
-    color:var(--brasero-orange);
+    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
     filter:drop-shadow(0 3px 0 rgba(0,0,0,.35));
   }
   .brand-96{
     font-family:'Ultra', serif;
-    font-size:clamp(30px,8vw,42px);
-    color:var(--brasero-orange);
+    font-size:65px;
+    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
     margin:-2px 0 0;
     letter-spacing:3px;
-    text-shadow:0 2px 0 rgba(0,0,0,.4);
+    filter:drop-shadow(0 2px 0 rgba(0,0,0,.4));
   }
   .brand p{
     margin:6px 0 0;
@@ -237,7 +243,7 @@
 
 <div class="card">
   <div class="skewers" id="skewers">
-    <span data-i="1">&#127842;</span><span data-i="2">&#127842;</span><span data-i="3">&#127842;</span><span data-i="4">&#127842;</span><span data-i="5">&#127842;</span>
+    <span data-i="1">&#128293;</span><span data-i="2">&#128293;</span><span data-i="3">&#128293;</span><span data-i="4">&#128293;</span><span data-i="5">&#128293;</span>
   </div>
 
   <!-- ETAPA 1 -->
@@ -338,7 +344,7 @@ const CONFIG = {
   // Cole aqui a URL do seu Web App do Apps Script (veja o arquivo LEIA-ME.md).
   // Deixe em branco ("") se ainda não configurou — o site funciona normalmente,
   // só não vai registrar o histórico na planilha.
-  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyKVePTx5pmottEzVJJmQBXaiLSLKDMfhFZ8HAJIdK9OObkmiY_hF3i7vKWcZ5a73jNwA/exec",
+  SHEETS_WEBAPP_URL: "",
 
   PACOTES: [
     { id:"start",   nome:"Pacote Start",       ate:20, espetos:100, desc:"Ideal para eventos menores, até 20 pessoas." },
