@@ -226,36 +226,7 @@
   .total-bar b{ color:var(--brasero-yellow); }
   .total-bar.abaixo-minimo b{ color:#ff8a80; }
 
-  .info-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background:#382c22;
-    color:var(--brasero-cream);
-    font-size:11px;
-    font-weight:700;
-    padding:0;
-    margin-left:4px;
-    vertical-align:middle;
-    line-height:1;
-    cursor:pointer;
-  }
-  .info-box{
-    display:none;
-    background:#0c0a09;
-    border:1px solid #2a2119;
-    border-radius:10px;
-    padding:10px 12px;
-    margin-top:8px;
-    font-size:12px;
-    color:var(--muted);
-    line-height:1.6;
-  }
-  .info-box.aberto{ display:block; }
-  .info-box ul{ margin:4px 0 0; padding-left:18px; }
+  .summary-block{
     background:#0c0a09;
     border:1px solid #2a2119;
     border-radius:12px;
@@ -394,7 +365,7 @@
 
     <div class="avisos">
       <p>📌 Pedido mínimo de <b>100 espetos</b>.</p>
-      <p>🍢 Cada sabor selecionado vem em pacotes de <b>5 unidades</b> — ao marcar "1", já está selecionando 5 espetos do sabor escolhido.</p>
+      <p>🍢 Cada sabor selecionado vem em blocos de <b>5 unidades</b> — ao marcar "1", já entram 5 espetos daquele sabor.</p>
       <p>💡 Sugerimos considerar uma média de <b>5 espetinhos por pessoa</b>, seguindo os mínimos abaixo:</p>
       <p style="margin-left:6px;">— 20 pessoas: 100 espetos<br>— 30 pessoas: 150 espetos<br>— 40 pessoas: 200 espetos</p>
       <p class="aviso-disclaimer">Os valores exibidos são estimados e podem sofrer alteração sem aviso prévio.</p>
@@ -601,7 +572,7 @@ function renderResumo(){
         <ul>
           <li>Carvão, churrasqueira e utensílios</li>
           <li>Churrasqueiro + Garçom</li>
-           <li>Transporte</li>
+          <li>Transporte</li>
           <li>Acompanhamentos (vinagrete, farofa e 2 tipos de molhos)</li>
           <li>Limpeza e organização</li>
         </ul>
