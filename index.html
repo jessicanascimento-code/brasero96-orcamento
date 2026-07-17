@@ -86,7 +86,7 @@
     position:absolute; inset:0 0 auto 0; height:4px;
     background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
   }
-  /* progress: 5 espetinhos = 5 etapas */
+  /* progress: 4 etapas */
   .skewers{
     display:flex; justify-content:center; gap:10px;
     margin-bottom:22px;
@@ -135,58 +135,114 @@
     transition:border-color .2s;
   }
   input:focus, select:focus, textarea:focus{ border-color:var(--brasero-orange); }
-  textarea{ resize:vertical; min-height:70px; }
+  textarea{ resize:vertical; min-height:90px; }
   .hint{ font-size:12px; color:var(--muted); margin-top:4px; }
   .grid2{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; }
   .grid2 > div{ min-width:0; }
 
-  .pacote-list{ display:flex; flex-direction:column; gap:10px; }
-  .pacote-card{
-    border:1.5px solid #382c22;
-    border-radius:12px;
-    padding:14px;
-    cursor:pointer;
-    transition:border-color .2s, background .2s;
-    position:relative;
-  }
-  .pacote-card.selected{
-    border-color:var(--brasero-orange);
+  /* avisos fixos da etapa de sabores */
+  .avisos{
     background:rgba(255,122,26,.08);
+    border:1px solid rgba(255,122,26,.35);
+    border-radius:12px;
+    padding:12px 14px;
+    margin-bottom:16px;
   }
-  .pacote-card.sugerido::after{
-    content:"Sugerido pro seu nº de convidados";
-    position:absolute; top:-10px; right:12px;
-    background:var(--brasero-red);
-    color:#fff; font-size:10.5px; font-weight:700;
-    padding:3px 8px; border-radius:20px;
-  }
-  .pacote-card h3{
-    margin:0 0 3px; font-family:'Poppins',sans-serif; font-size:16px;
+  .avisos p{
+    margin:0 0 6px;
+    font-size:12.5px;
     color:var(--brasero-cream);
+    line-height:1.5;
   }
-  .pacote-card p{ margin:0; font-size:12.5px; color:var(--muted); }
+  .avisos p:last-child{ margin-bottom:0; }
+  .avisos b{ color:var(--brasero-yellow); }
+  .aviso-disclaimer{
+    font-size:11.5px;
+    color:var(--muted);
+    font-style:italic;
+    margin-top:10px;
+  }
 
-  .chip-group{ margin-bottom:16px; }
+  .chip-group{ margin-bottom:18px; }
   .chip-group h4{
     font-size:12.5px; text-transform:uppercase; letter-spacing:.6px;
-    color:var(--brasero-orange); margin:0 0 8px; font-weight:700;
+    color:var(--brasero-orange); margin:0 0 4px; font-weight:700;
   }
-  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{
-    border:1.5px solid #382c22;
-    border-radius:20px;
-    padding:8px 14px;
-    font-size:13.5px;
-    cursor:pointer;
-    user-select:none;
-    transition:all .15s;
+
+  .sabor-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #241c15;
+  }
+  .sabor-row:last-child{ border-bottom:none; }
+  .sabor-info{ flex:1; min-width:0; }
+  .sabor-info .nome{
+    font-size:14px;
+    font-weight:600;
     color:var(--brasero-cream);
   }
-  .chip.on{
-    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange));
-    border-color:transparent;
-    font-weight:600;
+  .badge{
+    display:inline-block;
+    font-size:9.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+    padding:2px 7px;
+    border-radius:10px;
+    margin-left:6px;
+    vertical-align:middle;
+    white-space:nowrap;
   }
+  .badge-basico{ background:#382c22; color:var(--muted); }
+  .badge-premium{ background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange)); color:#fff; }
+  .sabor-preco{
+    font-size:11.5px;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .sabor-preco b{ color:var(--brasero-yellow); }
+  .stepper{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+  }
+  .stepper button{
+    width:28px; height:28px;
+    border-radius:50%;
+    background:#241c15;
+    border:1px solid #382c22;
+    color:var(--brasero-cream);
+    font-size:16px;
+    font-weight:700;
+    padding:0;
+    display:flex; align-items:center; justify-content:center;
+    line-height:1;
+  }
+  .stepper button:disabled{ opacity:.35; }
+  .stepper .qty{
+    min-width:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:14px;
+  }
+
+  .total-bar{
+    background:#0c0a09;
+    border:1px solid #2a2119;
+    border-radius:12px;
+    padding:12px 16px;
+    margin-top:6px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13.5px;
+  }
+  .total-bar b{ color:var(--brasero-yellow); }
+  .total-bar.abaixo-minimo b{ color:#ff8a80; }
 
   .summary-block{
     background:#0c0a09;
@@ -245,12 +301,12 @@
 <div class="brand">
   <p class="brand-name">BRASERO</p>
   <p class="brand-96">96</p>
-  <p class="tagline">Monte a base do seu or&ccedil;amento em 5 passos &#128293;</p>
+  <p class="tagline">Monte a base do seu or&ccedil;amento em 4 passos &#128293;</p>
 </div>
 
 <div class="card">
   <div class="skewers" id="skewers">
-    <span data-i="1">&#128293;</span><span data-i="2">&#128293;</span><span data-i="3">&#128293;</span><span data-i="4">&#128293;</span><span data-i="5">&#128293;</span>
+    <span data-i="1">&#128293;</span><span data-i="2">&#128293;</span><span data-i="3">&#128293;</span><span data-i="4">&#128293;</span>
   </div>
 
   <!-- ETAPA 1 -->
@@ -296,36 +352,37 @@
 
   <!-- ETAPA 2 -->
   <div class="step" id="step-2" style="display:none;">
-    <p class="step-title">Escolha um pacote</p>
-    <p class="step-sub">Isso é só um ponto de partida — os valores finais a gente ajusta com você na conversa.</p>
-    <div class="pacote-list" id="pacote-list"></div>
-    <p class="error-msg" id="err-2">Escolhe um pacote pra continuar.</p>
+    <p class="step-title">Monte seu cardápio</p>
+    <p class="step-sub">Escolha os sabores e as quantidades desejadas.</p>
+
+    <div class="avisos">
+      <p>📌 Pedido mínimo de <b>100 espetos</b>.</p>
+      <p>🍢 Cada sabor selecionado vem em blocos de <b>5 unidades</b> — ao marcar "1", já entram 5 espetos daquele sabor.</p>
+      <p class="aviso-disclaimer">Os valores exibidos são estimados e podem sofrer alteração sem aviso prévio.</p>
+    </div>
+
+    <div id="sabores-container"></div>
+
+    <div class="total-bar" id="total-bar">
+      <span>Total: <b id="total-espetos">0</b> espetos</span>
+      <span>Estimado: <b id="total-valor">R$ 0,00</b></span>
+    </div>
+    <p class="error-msg" id="err-2">Você precisa selecionar pelo menos 100 espetos pra continuar (faltam <span id="err-2-faltam">100</span>).</p>
   </div>
 
   <!-- ETAPA 3 -->
   <div class="step" id="step-3" style="display:none;">
-    <p class="step-title">Sabores desejados</p>
-    <p class="step-sub">Marca os que você quer incluir. Pode escolher mais de um — a gente monta o mix ideal pra quantidade do seu evento.</p>
-    <div id="sabores-container"></div>
-    <p class="error-msg" id="err-3">Marca pelo menos um sabor.</p>
+    <p class="step-title">Quer incluir alguma observação?</p>
+    <p class="step-sub">Restrição alimentar, horário de início, ponto de referência, pedido especial — o que for importante pra gente saber.</p>
+    <textarea id="f-obs" placeholder="Escreva aqui (opcional)..."></textarea>
   </div>
 
   <!-- ETAPA 4 -->
   <div class="step" id="step-4" style="display:none;">
-    <p class="step-title">Quer incluir mais alguma coisa?</p>
-    <p class="step-sub">Itens opcionais — se não quiser nenhum, pode seguir direto.</p>
-    <div class="chip-group">
-      <div class="chips" id="extras-container"></div>
-    </div>
-    <label class="first">Observações</label>
-    <textarea id="f-obs" placeholder="Alguma informação extra? Restrição alimentar, horário de início, ponto de referência..."></textarea>
-  </div>
-
-  <!-- ETAPA 5 -->
-  <div class="step" id="step-5" style="display:none;">
     <p class="step-title">Revisão do seu pedido</p>
     <p class="step-sub">Confere se está tudo certo. Ao enviar, o WhatsApp abre já com essa mensagem pronta pra você mandar pra gente.</p>
     <div id="resumo"></div>
+    <p class="aviso-disclaimer" style="text-align:center; margin-bottom:14px;">Os valores estimados podem sofrer alteração sem aviso prévio.</p>
     <button class="btn-whatsapp" id="btn-enviar">&#128242; Enviar pelo WhatsApp</button>
   </div>
 
@@ -349,117 +406,142 @@ const CONFIG = {
   WHATSAPP_NUMBER: "5585992180121",
 
   // Cole aqui a URL do seu Web App do Apps Script (veja o arquivo LEIA-ME.md).
-  // Deixe em branco ("") se ainda não configurou — o site funciona normalmente,
-  // só não vai registrar o histórico na planilha.
   SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyKVePTx5pmottEzVJJmQBXaiLSLKDMfhFZ8HAJIdK9OObkmiY_hF3i7vKWcZ5a73jNwA/exec",
 
-  PACOTES: [
-    { id:"start",   nome:"Pacote Start",       ate:20, espetos:100, desc:"Ideal para eventos menores, até 20 pessoas." },
-    { id:"chama",   nome:"Pacote Chama",       ate:30, espetos:150, desc:"Para eventos médios, até 30 pessoas." },
-    { id:"brasero", nome:"Pacote Brasero 96",  ate:40, espetos:200, desc:"Nosso pacote completo, até 40 pessoas." },
-    { id:"personalizado", nome:"Personalizado", ate:null, espetos:null, desc:"Mais de 40 pessoas ou uma necessidade fora do padrão? Vamos montar sob medida." }
-  ],
+  // Quantidade mínima de espetos por pedido (soma de todos os sabores).
+  MINIMO_ESPETOS: 100,
 
-  // Sabores agrupados por categoria dentro de cada grupo (clássicos / premium)
-  SABORES: {
-    "Sabores Clássicos": {
-      "Carne Bovina": ["Lombinho Bovino","Lombinho Bovino e Bacon intercalados","Lombinho Bovino e Calabresa intercalados","Coração Bovino","Cupim Bovino","Carne do Sol (Lombinho Bovino)","Alcatra Bovina"],
-      "Frango": ["Asa de Frango","Filé de Peito de Frango","Coxinha da Asa (Drumette)","Coração de Frango","Filé de Frango e Bacon intercalados","Filé de Frango e Bacon medalhão"],
-      "Carne Suína": ["Sobrepaleta Suína","Linguiça Mista para Churrasco"]
-    },
-    "Sabores Premium": {
-      "Carne Bovina": ["Picanha Bovina","Maminha da Alcatra Bovina","Cupim Bovino Tipo A Especial","Lombinho Bovino e Bacon medalhão","Alcatra Bovina Premium"]
-    }
-  },
+  // Quantas unidades cada "clique" no seletor de sabor representa.
+  UNIDADES_POR_BLOCO: 5,
 
-  // Serviços extras opcionais — são só sugestões, ajuste como quiser
-  EXTRAS: [
-    "Hora extra de atendimento",
-    "Bebida gelada no local",
-    "Petiscos de entrada",
-    "Sobremesa",
-    "Mesa decorada",
-    "Som ambiente"
+  // Valor fixo do serviço (mão de obra, estrutura, deslocamento local etc.),
+  // somado ao valor dos espetinhos em todo pedido, independente do tamanho.
+  VALOR_SERVICO: 600,
+
+  // Sabores disponíveis — vindos da aba "Cardápio & Custos" > tabela "LISTA DO SITE".
+  // Preço = "Preço Médio Venda" (por espeto). Ajuste aqui se os valores mudarem na planilha.
+  SABORES: [
+    { nome:"Lombinho Bovino", categoria:"Carne Bovina", nivel:"Básico", preco:9.00 },
+    { nome:"Coração Bovino", categoria:"Carne Bovina", nivel:"Básico", preco:6.00 },
+    { nome:"Cupim Bovino Tipo A", categoria:"Carne Bovina", nivel:"Básico", preco:8.00 },
+    { nome:"Carne do Sol (Lombinho Bovino)", categoria:"Carne Bovina", nivel:"Básico", preco:9.00 },
+    { nome:"Lombinho Bovino e Bacon intercalados", categoria:"Carne Bovina", nivel:"Básico", preco:8.00 },
+    { nome:"Asa de Frango", categoria:"Frango", nivel:"Básico", preco:8.00 },
+    { nome:"Coxinha da Asa (Drumette)", categoria:"Frango", nivel:"Básico", preco:8.00 },
+    { nome:"Filé de Peito de Frango", categoria:"Frango", nivel:"Básico", preco:7.00 },
+    { nome:"Coração de Frango", categoria:"Frango", nivel:"Básico", preco:9.00 },
+    { nome:"Medalhão de Frango e Bacon", categoria:"Frango", nivel:"Básico", preco:8.00 },
+    { nome:"Linguiça Mista para Churrasco", categoria:"Carne Suína", nivel:"Básico", preco:8.00 },
+    { nome:"Sobrepaleta Suína", categoria:"Carne Suína", nivel:"Básico", preco:7.00 },
+    { nome:"Alcatra Bovina", categoria:"Carne Bovina", nivel:"Premium", preco:10.00 },
+    { nome:"Cupim Bovino Tipo A Especial", categoria:"Carne Bovina", nivel:"Premium", preco:10.00 },
+    { nome:"Maminha da Alcatra Bovina", categoria:"Carne Bovina", nivel:"Premium", preco:10.00 },
+    { nome:"Picanha Bovina", categoria:"Carne Bovina", nivel:"Premium", preco:12.00 },
+    { nome:"Medalhão (Lombinho e Bacon)", categoria:"Carne Bovina", nivel:"Premium", preco:10.00 }
   ]
 };
 
 /* ========================================================================= */
 
+// ID único desta visita — usado pra atualizar a mesma linha na planilha
+// a cada etapa concluída, em vez de criar uma linha nova por etapa.
+const SESSION_ID = "brasero_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+
 const state = {
   step: 1,
-  pacote: null,
-  sabores: new Set(),
-  extras: new Set()
+  saboresQtd: {}, // nome do sabor -> nº de blocos de 5 selecionados
+  obs: ""
 };
 
 const $ = (id) => document.getElementById(id);
+const fmtMoeda = (v) => "R$ " + v.toFixed(2).replace(".", ",");
 
-function renderPacotes(){
-  const list = $("pacote-list");
-  list.innerHTML = "";
-  const convidados = parseInt($("f-convidados").value) || 0;
-  CONFIG.PACOTES.forEach(p => {
-    const sugerido = p.ate && convidados > 0 && convidados <= p.ate &&
-      !CONFIG.PACOTES.some(o => o.ate && o.ate < p.ate && convidados <= o.ate);
-    const div = document.createElement("div");
-    div.className = "pacote-card" + (state.pacote===p.id ? " selected":"") + (sugerido ? " sugerido":"");
-    div.innerHTML = `<h3>${p.nome}</h3><p>${p.desc}</p>`;
-    div.onclick = () => { state.pacote = p.id; renderPacotes(); };
-    list.appendChild(div);
+function totalEspetos(){
+  return Object.values(state.saboresQtd).reduce((soma, q) => soma + q, 0) * CONFIG.UNIDADES_POR_BLOCO;
+}
+function totalValor(){
+  let total = 0;
+  CONFIG.SABORES.forEach(s => {
+    const q = state.saboresQtd[s.nome] || 0;
+    total += q * CONFIG.UNIDADES_POR_BLOCO * s.preco;
   });
+  return total;
+}
+function valorServico(){
+  return CONFIG.VALOR_SERVICO;
+}
+function valorFinalTotal(){
+  return totalValor() + valorServico();
 }
 
 function renderSabores(){
   const container = $("sabores-container");
   container.innerHTML = "";
-  Object.entries(CONFIG.SABORES).forEach(([grupo, categorias]) => {
+  const categorias = {};
+  CONFIG.SABORES.forEach(s => {
+    if (!categorias[s.categoria]) categorias[s.categoria] = [];
+    categorias[s.categoria].push(s);
+  });
+
+  Object.entries(categorias).forEach(([categoria, itens]) => {
     const groupDiv = document.createElement("div");
     groupDiv.className = "chip-group";
-    groupDiv.innerHTML = `<h4>${grupo}</h4>`;
-    Object.entries(categorias).forEach(([categoria, itens]) => {
-      const catLabel = document.createElement("p");
-      catLabel.className = "hint";
-      catLabel.style.margin = "0 0 6px";
-      catLabel.textContent = categoria;
-      groupDiv.appendChild(catLabel);
-      const chipsDiv = document.createElement("div");
-      chipsDiv.className = "chips";
-      chipsDiv.style.marginBottom = "10px";
-      itens.forEach(sabor => {
-        const chip = document.createElement("div");
-        chip.className = "chip" + (state.sabores.has(sabor) ? " on":"");
-        chip.textContent = sabor;
-        chip.onclick = () => {
-          state.sabores.has(sabor) ? state.sabores.delete(sabor) : state.sabores.add(sabor);
-          chip.classList.toggle("on");
-        };
-        chipsDiv.appendChild(chip);
-      });
-      groupDiv.appendChild(chipsDiv);
+    groupDiv.innerHTML = `<h4>${categoria}</h4>`;
+
+    itens.forEach(sabor => {
+      const qtd = state.saboresQtd[sabor.nome] || 0;
+      const row = document.createElement("div");
+      row.className = "sabor-row";
+      const badgeClass = sabor.nivel === "Premium" ? "badge-premium" : "badge-basico";
+      const unidades = qtd * CONFIG.UNIDADES_POR_BLOCO;
+      const subtotal = unidades * sabor.preco;
+      row.innerHTML = `
+        <div class="sabor-info">
+          <span class="nome">${sabor.nome}</span><span class="badge ${badgeClass}">${sabor.nivel}</span>
+          <div class="sabor-preco">${fmtMoeda(sabor.preco)} / espeto ${qtd > 0 ? `— <b>${unidades} un. = ${fmtMoeda(subtotal)}</b>` : ""}</div>
+        </div>
+        <div class="stepper">
+          <button type="button" data-action="menos" ${qtd === 0 ? "disabled" : ""}>−</button>
+          <span class="qty">${qtd}</span>
+          <button type="button" data-action="mais">+</button>
+        </div>
+      `;
+      row.querySelector('[data-action="menos"]').onclick = () => {
+        if (state.saboresQtd[sabor.nome] > 0) state.saboresQtd[sabor.nome]--;
+        renderSabores();
+        renderTotal();
+      };
+      row.querySelector('[data-action="mais"]').onclick = () => {
+        state.saboresQtd[sabor.nome] = (state.saboresQtd[sabor.nome] || 0) + 1;
+        renderSabores();
+        renderTotal();
+      };
+      groupDiv.appendChild(row);
     });
     container.appendChild(groupDiv);
   });
 }
 
-function renderExtras(){
-  const container = $("extras-container");
-  container.innerHTML = "";
-  CONFIG.EXTRAS.forEach(extra => {
-    const chip = document.createElement("div");
-    chip.className = "chip" + (state.extras.has(extra) ? " on":"");
-    chip.textContent = extra;
-    chip.onclick = () => {
-      state.extras.has(extra) ? state.extras.delete(extra) : state.extras.add(extra);
-      chip.classList.toggle("on");
-    };
-    container.appendChild(chip);
-  });
+function renderTotal(){
+  const espetos = totalEspetos();
+  const valor = totalValor();
+  $("total-espetos").textContent = espetos;
+  $("total-valor").textContent = fmtMoeda(valor);
+  $("total-bar").classList.toggle("abaixo-minimo", espetos < CONFIG.MINIMO_ESPETOS);
+}
+
+function listaSaboresSelecionados(){
+  return CONFIG.SABORES
+    .filter(s => (state.saboresQtd[s.nome] || 0) > 0)
+    .map(s => {
+      const un = state.saboresQtd[s.nome] * CONFIG.UNIDADES_POR_BLOCO;
+      return { nome:s.nome, nivel:s.nivel, unidades:un, subtotal: un * s.preco };
+    });
 }
 
 function renderResumo(){
-  const pacoteNome = CONFIG.PACOTES.find(p => p.id === state.pacote)?.nome || "-";
-  const sabores = [...state.sabores];
-  const extras = [...state.extras];
+  const sabores = listaSaboresSelecionados();
+  const linhasSabores = sabores.map(s => `${s.unidades} un. — ${s.nome} (${s.nivel}) — ${fmtMoeda(s.subtotal)}`).join("<br>");
   $("resumo").innerHTML = `
     <div class="summary-block">
       <div><b>${$("f-nome").value || "-"}</b> <span class="muted-small">${$("f-telefone").value || ""}</span></div>
@@ -467,18 +549,23 @@ function renderResumo(){
       <div class="muted-small">${$("f-data").value || "Data a combinar"} · ${$("f-local").value || "Local a combinar"}</div>
     </div>
     <div class="summary-block">
-      <div><b>Pacote:</b> ${pacoteNome}</div>
-      <div><b>Sabores:</b> ${sabores.length ? sabores.join(", ") : "nenhum selecionado"}</div>
-      ${extras.length ? `<div><b>Extras:</b> ${extras.join(", ")}</div>` : ""}
-      ${$("f-obs").value ? `<div><b>Observações:</b> ${$("f-obs").value}</div>` : ""}
+      <div><b>Sabores:</b></div>
+      <div>${linhasSabores || "nenhum selecionado"}</div>
+      ${$("f-obs").value ? `<div style="margin-top:8px;"><b>Observações:</b> ${$("f-obs").value}</div>` : ""}
+    </div>
+    <div class="summary-block">
+      <div>Total de Espetinhos: <b>${totalEspetos()} espetos</b></div>
+      <div>Valor dos espetinhos: <b>${fmtMoeda(totalValor())}</b></div>
+      <div>Valor do serviço: <b>${fmtMoeda(valorServico())}</b></div>
+      <div style="margin-top:6px; padding-top:6px; border-top:1px solid #2a2119;">Valor total: <b>${fmtMoeda(valorFinalTotal())}</b></div>
     </div>
   `;
 }
 
 function buildMensagem(){
-  const pacoteNome = CONFIG.PACOTES.find(p => p.id === state.pacote)?.nome || "-";
+  const sabores = listaSaboresSelecionados();
   const linhas = [
-    "Ol\u00e1! Gostaria de solicitar um or\u00e7amento para meu evento com o Brasero 96 \u{1F525}",
+    "Olá! Gostaria de solicitar um orçamento para meu evento com o Brasero 96 \u{1F525}",
     "",
     "*Dados do evento*",
     `Nome: ${$("f-nome").value || "-"}`,
@@ -487,28 +574,39 @@ function buildMensagem(){
     `Local: ${$("f-local").value || "a combinar"}`,
     `Nº de convidados: ${$("f-convidados").value || "-"}`,
     "",
-    `*Pacote de interesse:* ${pacoteNome}`,
+    "*Cardápio desejado:*",
+    ...sabores.map(s => `- ${s.unidades} un. ${s.nome} (${s.nivel}) — ${fmtMoeda(s.subtotal)}`),
     "",
-    `*Sabores desejados:* ${[...state.sabores].join(", ") || "a combinar"}`,
+    `Total de Espetinhos: ${totalEspetos()} espetos`,
+    `Valor dos espetinhos: ${fmtMoeda(totalValor())}`,
+    `Valor do serviço: ${fmtMoeda(valorServico())}`,
+    "",
+    `*Valor total: ${fmtMoeda(valorFinalTotal())}*`,
   ];
-  if (state.extras.size) linhas.push("", `*Serviços adicionais:* ${[...state.extras].join(", ")}`);
   if ($("f-obs").value) linhas.push("", `*Observações:* ${$("f-obs").value}`);
+  linhas.push("", "_Valores estimados, sujeitos a alteração sem aviso prévio._");
   linhas.push("", "Aguardo o retorno com os valores. Obrigado!");
   return linhas.join("\n");
 }
 
 function logNoSheets(){
   if (!CONFIG.SHEETS_WEBAPP_URL) return; // registro desativado até configurar a URL
+  const sabores = listaSaboresSelecionados()
+    .map(s => `${s.unidades}x ${s.nome} (${s.nivel})`)
+    .join(" | ");
   const params = new URLSearchParams({
+    sessionId: SESSION_ID,
     nome: $("f-nome").value,
     telefone: $("f-telefone").value,
     tipoEvento: $("f-tipo").value,
     data: $("f-data").value,
     local: $("f-local").value,
     convidados: $("f-convidados").value,
-    pacote: CONFIG.PACOTES.find(p => p.id === state.pacote)?.nome || "",
-    sabores: [...state.sabores].join(" | "),
-    extras: [...state.extras].join(" | "),
+    sabores: sabores,
+    totalEspetos: totalEspetos(),
+    valorEspetinhos: totalValor().toFixed(2),
+    valorServico: valorServico().toFixed(2),
+    valorTotal: valorFinalTotal().toFixed(2),
     observacoes: $("f-obs").value,
     callback: "jsonpCallback"
   });
@@ -526,13 +624,10 @@ function validaEtapa(step){
     return ok;
   }
   if (step === 2){
-    const ok = !!state.pacote;
+    const espetos = totalEspetos();
+    const ok = espetos >= CONFIG.MINIMO_ESPETOS;
+    $("err-2-faltam").textContent = Math.max(CONFIG.MINIMO_ESPETOS - espetos, 0);
     $("err-2").style.display = ok ? "none" : "block";
-    return ok;
-  }
-  if (step === 3){
-    const ok = state.sabores.size > 0;
-    $("err-3").style.display = ok ? "none" : "block";
     return ok;
   }
   return true;
@@ -546,18 +641,15 @@ function goTo(step){
     s.classList.toggle("done", parseInt(s.dataset.i) <= step);
   });
   $("btn-voltar").style.visibility = step === 1 ? "hidden" : "visible";
-  $("nav-row").style.display = step === 5 ? "none" : "flex";
-  if (step === 2) renderPacotes();
-  if (step === 3) renderSabores();
-  if (step === 4) renderExtras();
-  if (step === 5) renderResumo();
+  $("nav-row").style.display = step === 4 ? "none" : "flex";
+  if (step === 2){ renderSabores(); renderTotal(); }
+  if (step === 4) renderResumo();
 }
-
-$("f-convidados").addEventListener("input", () => { if (state.step===2) renderPacotes(); });
 
 $("btn-avancar").onclick = () => {
   if (!validaEtapa(state.step)) return;
-  goTo(Math.min(state.step + 1, 5));
+  logNoSheets();
+  goTo(Math.min(state.step + 1, 4));
 };
 $("btn-voltar").onclick = () => goTo(Math.max(state.step - 1, 1));
 
