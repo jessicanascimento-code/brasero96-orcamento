@@ -266,6 +266,9 @@
   }
   .summary-block b{ color:var(--brasero-yellow); }
   .summary-block .muted-small{ color:var(--muted); font-size:12px; }
+  .resumo-valores{ margin-top:20px; }
+  .valor-linha{ margin-bottom:4px; }
+  .valor-label{ color:var(--brasero-orange); font-weight:600; }
   .info-btn{
     display:inline-flex; align-items:center; justify-content:center;
     width:16px; height:16px; border-radius:50%;
@@ -390,7 +393,7 @@
 
     <div class="avisos">
       <p>📌 Pedido mínimo de <b>100 espetos</b>.</p>
-      <p>🍢 Cada sabor selecionado vem em pacotes de <b>5 unidades</b> — ao marcar "1", já entram 5 espetos daquele sabor.</p>
+      <p>🍢 Cada sabor selecionado vem em blocos de <b>5 unidades</b> — ao marcar "1", já entram 5 espetos daquele sabor.</p>
       <p>💡 Sugerimos considerar uma média de <b>5 espetinhos por pessoa</b>, seguindo os mínimos abaixo:</p>
       <p style="margin-left:6px;">— 20 pessoas: 100 espetos<br>— 30 pessoas: 150 espetos<br>— 40 pessoas: 200 espetos</p>
       <p class="aviso-disclaimer">Os valores exibidos são estimados e podem sofrer alteração sem aviso prévio.</p>
@@ -441,7 +444,7 @@ const CONFIG = {
   WHATSAPP_NUMBER: "5585992180121",
 
   // Cole aqui a URL do seu Web App do Apps Script (veja o arquivo LEIA-ME.md).
-  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbxumOB9EFUZ6DIefTfqJH2uRde59Pp1obqfrLAq1Jc9B0wHdNPZwx74vFyJf6JVFMgBNA/exec",
+  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyKVePTx5pmottEzVJJmQBXaiLSLKDMfhFZ8HAJIdK9OObkmiY_hF3i7vKWcZ5a73jNwA/exec",
 
   // Quantidade mínima de espetos por pedido (soma de todos os sabores).
   MINIMO_ESPETOS: 100,
@@ -588,10 +591,10 @@ function renderResumo(){
       <div>${linhasSabores || "nenhum selecionado"}</div>
       ${$("f-obs").value ? `<div style="margin-top:8px;"><b>Observações:</b> ${$("f-obs").value}</div>` : ""}
     </div>
-    <div class="summary-block">
-      <div>Total de Espetinhos: <b>${totalEspetos()} espetos</b></div>
-      <div>Valor dos espetinhos: <b>${fmtMoeda(totalValor())}</b></div>
-      <div>Valor do serviço: <b>${fmtMoeda(valorServico())}</b> <span class="info-btn" onclick="toggleInfoServico()">?</span></div>
+    <div class="summary-block resumo-valores">
+      <div class="valor-linha"><span class="valor-label">Total de Espetinhos:</span> <b>${totalEspetos()} espetos</b></div>
+      <div class="valor-linha"><span class="valor-label">Valor dos espetinhos:</span> <b>${fmtMoeda(totalValor())}</b></div>
+      <div class="valor-linha"><span class="valor-label">Valor do serviço:</span> <b>${fmtMoeda(valorServico())}</b> <span class="info-btn" onclick="toggleInfoServico()">?</span></div>
       <div id="info-servico" class="info-popover" style="display:none;">
         <b>O que está incluso no valor do serviço:</b>
         <ul>
@@ -602,7 +605,7 @@ function renderResumo(){
           <li>Limpeza e organização</li>
         </ul>
       </div>
-      <div style="margin-top:6px; padding-top:6px; border-top:1px solid #2a2119;">Valor total: <b>${fmtMoeda(valorFinalTotal())}</b></div>
+      <div class="valor-linha" style="margin-top:6px; padding-top:6px; border-top:1px solid #2a2119;"><span class="valor-label">Valor total:</span> <b>${fmtMoeda(valorFinalTotal())}</b></div>
     </div>
   `;
 }
