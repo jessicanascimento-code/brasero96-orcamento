@@ -226,7 +226,36 @@
   .total-bar b{ color:var(--brasero-yellow); }
   .total-bar.abaixo-minimo b{ color:#ff8a80; }
 
-  .summary-block{
+  .info-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#382c22;
+    color:var(--brasero-cream);
+    font-size:11px;
+    font-weight:700;
+    padding:0;
+    margin-left:4px;
+    vertical-align:middle;
+    line-height:1;
+    cursor:pointer;
+  }
+  .info-box{
+    display:none;
+    background:#0c0a09;
+    border:1px solid #2a2119;
+    border-radius:10px;
+    padding:10px 12px;
+    margin-top:8px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+  .info-box.aberto{ display:block; }
+  .info-box ul{ margin:4px 0 0; padding-left:18px; }
     background:#0c0a09;
     border:1px solid #2a2119;
     border-radius:12px;
@@ -237,6 +266,26 @@
   }
   .summary-block b{ color:var(--brasero-yellow); }
   .summary-block .muted-small{ color:var(--muted); font-size:12px; }
+  .info-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:16px; height:16px; border-radius:50%;
+    background:#382c22; color:var(--brasero-cream);
+    font-size:11px; font-weight:700; cursor:pointer;
+    margin-left:4px; vertical-align:middle;
+    user-select:none;
+  }
+  .info-popover{
+    background:#0c0a09;
+    border:1px solid #382c22;
+    border-radius:10px;
+    padding:10px 12px;
+    margin-top:8px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+  .info-popover b{ color:var(--brasero-cream); display:block; margin-bottom:4px; }
+  .info-popover ul{ margin:0; padding-left:16px; }
 
   .nav-row{
     display:flex; justify-content:space-between; gap:10px; margin-top:22px;
@@ -542,7 +591,17 @@ function renderResumo(){
     <div class="summary-block">
       <div>Total de Espetinhos: <b>${totalEspetos()} espetos</b></div>
       <div>Valor dos espetinhos: <b>${fmtMoeda(totalValor())}</b></div>
-      <div>Valor do serviço: <b>${fmtMoeda(valorServico())}</b></div>
+      <div>Valor do serviço: <b>${fmtMoeda(valorServico())}</b> <span class="info-btn" onclick="toggleInfoServico()">?</span></div>
+      <div id="info-servico" class="info-popover" style="display:none;">
+        <b>O que está incluso no valor do serviço:</b>
+        <ul>
+          <li>Carvão, churrasqueira e utensílios</li>
+          <li>Transporte</li>
+          <li>Churrasqueiro + Apoio</li>
+          <li>Acompanhamentos (vinagrete, farofa e molhos)</li>
+          <li>Limpeza e organização</li>
+        </ul>
+      </div>
       <div style="margin-top:6px; padding-top:6px; border-top:1px solid #2a2119;">Valor total: <b>${fmtMoeda(valorFinalTotal())}</b></div>
     </div>
   `;
@@ -617,6 +676,12 @@ function validaEtapa(step){
     return ok;
   }
   return true;
+}
+
+function toggleInfoServico(){
+  const el = $("info-servico");
+  if (!el) return;
+  el.style.display = el.style.display === "none" ? "block" : "none";
 }
 
 function goTo(step){
