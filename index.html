@@ -39,30 +39,12 @@
     text-align:center;
     margin-bottom:22px;
   }
-  .brand-name{
-    font-family:'Ultra', serif;
-    font-size:clamp(35px,9vw,50px);
-    line-height:.9;
-    margin:0;
-    letter-spacing:1px;
-    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    -webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 3px 0 rgba(0,0,0,.35));
-  }
-  .brand-96{
-    font-family:'Ultra', serif;
-    font-size:clamp(35px,9vw,50px);
-    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    -webkit-text-fill-color:transparent;
-    margin:-2px 0 0;
-    letter-spacing:3px;
-    filter:drop-shadow(0 2px 0 rgba(0,0,0,.4));
+  .logo-img{
+    width:130px;
+    height:130px;
+    display:block;
+    margin:0 auto 6px;
+    filter:drop-shadow(0 6px 16px rgba(255,122,26,.3));
   }
   .brand .tagline{
     margin:6px 0 0;
@@ -299,8 +281,10 @@
 <body>
 
 <div class="brand">
-  <p class="brand-name">BRASERO</p>
-  <p class="brand-96">96</p>
+  <picture>
+    <source srcset="logo.webp" type="image/webp">
+    <img src="logo.png" alt="Brasero 96 - Espetinhos para eventos" class="logo-img" width="130" height="130">
+  </picture>
   <p class="tagline">Monte a base do seu or&ccedil;amento em 4 passos &#128293;</p>
 </div>
 
@@ -408,7 +392,7 @@ const CONFIG = {
   WHATSAPP_NUMBER: "5585992180121",
 
   // Cole aqui a URL do seu Web App do Apps Script (veja o arquivo LEIA-ME.md).
-  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbxumOB9EFUZ6DIefTfqJH2uRde59Pp1obqfrLAq1Jc9B0wHdNPZwx74vFyJf6JVFMgBNA/exec",
+  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyKVePTx5pmottEzVJJmQBXaiLSLKDMfhFZ8HAJIdK9OObkmiY_hF3i7vKWcZ5a73jNwA/exec",
 
   // Quantidade mínima de espetos por pedido (soma de todos os sabores).
   MINIMO_ESPETOS: 100,
