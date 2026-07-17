@@ -358,6 +358,8 @@
     <div class="avisos">
       <p>📌 Pedido mínimo de <b>100 espetos</b>.</p>
       <p>🍢 Cada sabor selecionado vem em blocos de <b>5 unidades</b> — ao marcar "1", já entram 5 espetos daquele sabor.</p>
+      <p>💡 Sugerimos considerar uma média de <b>5 espetinhos por pessoa</b>, seguindo os mínimos abaixo:</p>
+      <p style="margin-left:6px;">— 20 pessoas: 100 espetos<br>— 30 pessoas: 150 espetos<br>— 40 pessoas: 200 espetos</p>
       <p class="aviso-disclaimer">Os valores exibidos são estimados e podem sofrer alteração sem aviso prévio.</p>
     </div>
 
@@ -406,7 +408,7 @@ const CONFIG = {
   WHATSAPP_NUMBER: "5585992180121",
 
   // Cole aqui a URL do seu Web App do Apps Script (veja o arquivo LEIA-ME.md).
-  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbxumOB9EFUZ6DIefTfqJH2uRde59Pp1obqfrLAq1Jc9B0wHdNPZwx74vFyJf6JVFMgBNA/exec",
+  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyKVePTx5pmottEzVJJmQBXaiLSLKDMfhFZ8HAJIdK9OObkmiY_hF3i7vKWcZ5a73jNwA/exec",
 
   // Quantidade mínima de espetos por pedido (soma de todos os sabores).
   MINIMO_ESPETOS: 100,
@@ -644,6 +646,7 @@ function goTo(step){
   $("nav-row").style.display = step === 4 ? "none" : "flex";
   if (step === 2){ renderSabores(); renderTotal(); }
   if (step === 4) renderResumo();
+  window.scrollTo({ top: 0, behavior: "instant" });
 }
 
 $("btn-avancar").onclick = () => {
