@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brasero 96 — Espetinhos para Eventos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Ultra&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brasero-black:#0c0a09;
+    --brasero-black-soft:#171310;
+    --brasero-red:#e0231a;
+    --brasero-orange:#ff7a1a;
+    --brasero-yellow:#ffc42e;
+    --brasero-cream:#fff6e9;
+    --muted:#a89a8c;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--brasero-black);
+    color:var(--brasero-cream);
+    font-family:'Inter',system-ui,sans-serif;
+    overflow-x:hidden;
+  }
+  section{
+    padding:70px 20px;
+    max-width:640px;
+    margin:0 auto;
+    position:relative;
+  }
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 20px;
+    background:
+      radial-gradient(ellipse 800px 600px at 50% 0%, rgba(255,122,26,.28), transparent 65%),
+      radial-gradient(ellipse 500px 400px at 50% 100%, rgba(224,35,26,.15), transparent 70%),
+      var(--brasero-black);
+  }
+  .hero img.logo{
+    width:150px; height:150px;
+    margin-bottom:22px;
+    filter:drop-shadow(0 8px 24px rgba(255,122,26,.35));
+  }
+  .hero .kicker{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:2px;
+    color:var(--brasero-orange);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:'Poppins',sans-serif;
+    font-weight:900;
+    font-size:clamp(34px,9vw,52px);
+    line-height:1.08;
+    margin:0 0 8px;
+  }
+  .hero h1 .highlight{
+    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange),var(--brasero-yellow));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    -webkit-text-fill-color:transparent;
+  }
+  .hero p.sub{
+    color:var(--muted);
+    font-size:16px;
+    max-width:420px;
+    margin:14px 0 34px;
+    line-height:1.6;
+  }
+
+  .btn-orcamento{
+    display:inline-block;
+    background:var(--brasero-orange);
+    color:#1a1310;
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:17px;
+    padding:18px 38px;
+    border-radius:50px;
+    text-decoration:none;
+    box-shadow:0 10px 30px -8px rgba(255,122,26,.55);
+    transition:transform .15s ease;
+  }
+  .btn-orcamento:active{ transform:scale(.96); }
+
+  .scroll-hint{
+    margin-top:46px;
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:1px;
+    animation:bounce 2s infinite;
+  }
+  @keyframes bounce{
+    0%,100%{ transform:translateY(0); opacity:.6; }
+    50%{ transform:translateY(6px); opacity:1; }
+  }
+
+  /* ---------- SEÇÕES GERAIS ---------- */
+  .eyebrow{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:clamp(22px,6vw,30px);
+    text-align:center;
+    margin:0 0 6px;
+  }
+  .rule{
+    width:70px; height:4px; margin:0 auto 28px;
+    background:linear-gradient(90deg,var(--brasero-red),var(--brasero-orange));
+    border-radius:4px;
+  }
+  .lead{
+    text-align:center;
+    font-size:16px;
+    line-height:1.75;
+    color:var(--brasero-cream);
+  }
+  .lead .accent{ color:var(--brasero-yellow); font-weight:600; }
+
+  /* ---------- EVENTOS (lista) ---------- */
+  .eventos-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:30px;
+  }
+  .evento-card{
+    background:var(--brasero-black-soft);
+    border:1px solid #2a2119;
+    border-radius:14px;
+    padding:20px 14px;
+    text-align:center;
+  }
+  .evento-card .emoji{ font-size:28px; display:block; margin-bottom:8px; }
+  .evento-card span.label{ font-size:13.5px; font-weight:600; }
+
+  /* ---------- DETALHES (bullets com ícone) ---------- */
+  .detalhes-list{ margin-top:30px; display:flex; flex-direction:column; gap:18px; }
+  .detalhe-item{ display:flex; gap:14px; align-items:flex-start; }
+  .detalhe-item .icone{
+    font-size:22px; flex-shrink:0; width:40px; height:40px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,122,26,.1); border-radius:50%;
+  }
+  .detalhe-item p{ margin:0; font-size:15px; line-height:1.6; }
+  .detalhe-item b{ color:var(--brasero-yellow); }
+
+  /* ---------- REGRAS / PAGAMENTO ---------- */
+  .box-regras{
+    background:var(--brasero-black-soft);
+    border:1px solid #2a2119;
+    border-radius:16px;
+    padding:26px 22px;
+    margin-top:20px;
+  }
+  .box-regras h3{
+    font-family:'Poppins',sans-serif; font-size:15px; font-weight:700;
+    color:var(--brasero-orange); margin:22px 0 10px;
+    text-transform:uppercase; letter-spacing:.5px;
+  }
+  .box-regras h3:first-child{ margin-top:0; }
+  .box-regras ul{ margin:0; padding-left:18px; }
+  .box-regras li{ font-size:14.5px; line-height:1.7; margin-bottom:6px; }
+  .desconto{ color:#5fd97a; font-weight:700; }
+  .metodos{
+    display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;
+    justify-content:center;
+  }
+  .metodos span{
+    background:#241c15; border:1px solid #382c22; border-radius:8px;
+    padding:6px 12px; font-size:12.5px; font-weight:600; color:var(--muted);
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer-cta{
+    text-align:center;
+    padding:80px 20px 60px;
+    background:linear-gradient(180deg, transparent, rgba(255,122,26,.06));
+  }
+  .footer-cta h2{
+    font-family:'Poppins',sans-serif; font-weight:800;
+    font-size:clamp(22px,6vw,28px); margin:0 0 30px; line-height:1.3;
+  }
+  .footer-cta h2 .red{ color:var(--brasero-red); }
+  .social-row{
+    display:flex; justify-content:center; gap:14px; margin:26px 0;
+    flex-wrap:wrap;
+  }
+  .social-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--brasero-black-soft); border:1px solid #2a2119;
+    padding:12px 20px; border-radius:50px; color:var(--brasero-cream);
+    text-decoration:none; font-size:14px; font-weight:600;
+  }
+  .footer-logo{ width:90px; height:90px; margin:40px auto 10px; display:block; opacity:.9; }
+  .footer-thanks{ font-family:'Poppins',sans-serif; font-weight:800; font-size:20px; margin-top:6px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <picture>
+    <source srcset="logo.webp" type="image/webp">
+    <img src="logo.png" alt="Brasero 96" class="logo">
+  </picture>
+  <p class="kicker">Brasero 96 · Espetinhos para eventos</p>
+  <h1>SEU EVENTO<br><span class="highlight">NO PONTO CERTO</span></h1>
+  <p class="sub">Espetinhos assados na hora, equipe treinada e uma experiência gastronômica de alto padrão para o seu evento.</p>
+  <a href="orcamento.html" class="btn-orcamento">🔥 Monte seu orçamento</a>
+  <p class="scroll-hint">▾ role pra conhecer nosso serviço</p>
+</section>
+
+<!-- NOSSO SERVIÇO -->
+<section class="reveal">
+  <p class="eyebrow">Nosso Serviço</p>
+  <div class="rule"></div>
+  <p class="lead">
+    Oferecemos um serviço completo de <span class="accent">espetinhos</span> para eventos, unindo ingredientes cuidadosamente <span class="accent">selecionados</span>, uma <span class="accent">equipe qualificada</span> e um atendimento personalizado para garantir uma experiência gastronômica de <span class="accent">alto padrão</span> aos seus convidados.
+  </p>
+</section>
+
+<!-- NÃO SE PREOCUPE -->
+<section class="reveal">
+  <p class="eyebrow">Não se preocupe!</p>
+  <div class="rule"></div>
+  <p class="lead">Qualquer que seja seu evento, estaremos prontos para lhe atender:</p>
+  <div class="eventos-grid">
+    <div class="evento-card"><span class="emoji">🎂</span><span class="label">Aniversários</span></div>
+    <div class="evento-card"><span class="emoji">🥂</span><span class="label">Confraternizações</span></div>
+    <div class="evento-card"><span class="emoji">🏢</span><span class="label">Eventos corporativos</span></div>
+    <div class="evento-card"><span class="emoji">👶</span><span class="label">Chá revelação / fraldas / cozinha</span></div>
+    <div class="evento-card"><span class="emoji">💍</span><span class="label">Noivados</span></div>
+    <div class="evento-card"><span class="emoji">💒</span><span class="label">Casamentos</span></div>
+  </div>
+</section>
+
+<!-- DETALHES DO EVENTO -->
+<section class="reveal">
+  <p class="eyebrow">Detalhes do Evento</p>
+  <div class="rule"></div>
+  <div class="detalhes-list">
+    <div class="detalhe-item"><span class="icone">⏱️</span><p><b>Atendimento por até 3 horas.</b></p></div>
+    <div class="detalhe-item"><span class="icone">🔥</span><p>Levamos toda a estrutura, incluindo <b>churrasqueira profissional</b>, grelhas e todos os equipamentos necessários.</p></div>
+    <div class="detalhe-item"><span class="icone">🍢</span><p>Os espetinhos são <b>assados na hora</b>, garantindo sabor, qualidade e uma experiência única para seus convidados.</p></div>
+    <div class="detalhe-item"><span class="icone">👨‍🍳</span><p><b>Equipe treinada</b> e uniformizada, preparada para oferecer um atendimento ágil e cordial.</p></div>
+    <div class="detalhe-item"><span class="icone">🙌</span><p>Servimos os convidados durante todo o evento, proporcionando mais <b>conforto e praticidade</b>.</p></div>
+    <div class="detalhe-item"><span class="icone">📦</span><p>Montagem, operação e <b>organização</b> ficam por nossa conta.</p></div>
+    <div class="detalhe-item"><span class="icone">🧹</span><p>Ao final do evento, <b>realizamos a limpeza</b> da área utilizada, deixando o espaço limpo e organizado.</p></div>
+    <div class="detalhe-item"><span class="icone">🏠</span><p>Eventos em condomínios: recomendamos verificar previamente as normas para utilização de churrasqueira a carvão.</p></div>
+  </div>
+</section>
+
+<!-- REGRAS + PAGAMENTO -->
+<section class="reveal">
+  <p class="eyebrow">Regras do Evento</p>
+  <div class="rule"></div>
+  <div class="box-regras">
+    <ul>
+      <li>🔥 A reserva da data do seu evento será feita mediante pagamento de 50% do valor ou do pagamento integral antecipado no ato da aprovação da proposta.</li>
+      <li>🔥 Para eventos fora de Fortaleza ou Região Metropolitana, será cobrada uma taxa adicional de deslocamento (valor a combinar).</li>
+    </ul>
+
+    <h3>Formas de pagamento</h3>
+    <ul>
+      <li>Entrada de 50% do valor total para reservar a data, e os 50% restantes no dia do evento;</li>
+      <li>Parcelamento no cartão de crédito;</li>
+      <li><span class="desconto">5% de desconto</span> para pagamento à vista.</li>
+    </ul>
+    <div class="metodos">
+      <span>Pix</span><span>Visa</span><span>Mastercard</span><span>Elo</span><span>Amex</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CTA FINAL -->
+<section class="footer-cta reveal">
+  <h2>Será um prazer levar o <span class="red">Brasero 96</span> até você!</h2>
+  <a href="orcamento.html" class="btn-orcamento">🔥 Monte seu orçamento</a>
+  <div class="social-row">
+    <a href="https://instagram.com/brasero.96" target="_blank" class="social-btn">📷 @brasero.96</a>
+    <a href="https://wa.me/5585992180121" target="_blank" class="social-btn">💬 Chama no Zap</a>
+  </div>
+  <picture>
+    <source srcset="logo.webp" type="image/webp">
+    <img src="logo.png" alt="Brasero 96" class="footer-logo">
+  </picture>
+  <p class="footer-thanks">Muito obrigado! 🔥</p>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
