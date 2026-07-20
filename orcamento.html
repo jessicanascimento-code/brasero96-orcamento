@@ -39,6 +39,17 @@
     text-align:center;
     margin-bottom:22px;
   }
+  .btn-voltar-inicio{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--muted);
+    font-size:13px;
+    text-decoration:none;
+    margin-bottom:14px;
+    padding:6px 2px;
+  }
+  .btn-voltar-inicio:hover{ color:var(--brasero-orange); }
   .logo-img{
     width:130px;
     height:130px;
@@ -304,6 +315,8 @@
 </head>
 <body>
 
+<a href="index.html" class="btn-voltar-inicio">&larr; Voltar ao início</a>
+
 <div class="brand">
   <picture>
     <source srcset="logo.webp" type="image/webp">
@@ -416,7 +429,7 @@ const CONFIG = {
   WHATSAPP_NUMBER: "5585992180121",
 
   // Cole aqui a URL do seu Web App do Apps Script (veja o arquivo LEIA-ME.md).
-  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbzSgCWXfSZ2AGUkIqFNHvVZvKn5Xd0XGuMJ6TlPzuxd3-T72KjtbLB6l88ZFig-5r8nhw/exec",
+  SHEETS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbyKVePTx5pmottEzVJJmQBXaiLSLKDMfhFZ8HAJIdK9OObkmiY_hF3i7vKWcZ5a73jNwA/exec",
 
   // Quantidade mínima de espetos por pedido (soma de todos os sabores).
   MINIMO_ESPETOS: 100,
