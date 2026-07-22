@@ -622,8 +622,12 @@ function buildMensagem(){
   return linhas.join("\n");
 }
 
+let enviandoLog = false;
 function logNoSheets(){
   if (!CONFIG.SHEETS_WEBAPP_URL) return; // registro desativado até configurar a URL
+  if (enviandoLog) return; // evita disparo duplicado se a função for chamada de novo antes de terminar
+  enviandoLog = true;
+
   const sabores = listaSaboresSelecionados()
     .map(s => `${s.unidades}x ${s.nome} (${s.nivel})`)
     .join(" | ");
@@ -643,11 +647,14 @@ function logNoSheets(){
     observacoes: $("f-obs").value,
     callback: "jsonpCallback"
   });
-  window.jsonpCallback = function(){ /* apenas confirma recebimento, sem ação visual */ };
+  window.jsonpCallback = function(){
+    enviandoLog = false;
+  };
   const script = document.createElement("script");
   script.src = CONFIG.SHEETS_WEBAPP_URL + "?" + params.toString();
+  script.onerror = () => { enviandoLog = false; };
   document.body.appendChild(script);
-  setTimeout(() => script.remove(), 8000);
+  setTimeout(() => { script.remove(); enviandoLog = false; }, 8000);
 }
 
 function validaEtapa(step){
